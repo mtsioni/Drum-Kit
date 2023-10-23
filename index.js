@@ -8,6 +8,7 @@ for (let i = 0; i<drumSet.length; i++) {
 
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
 
     });
 }
@@ -17,10 +18,12 @@ for (let i = 0; i<drumSet.length; i++) {
 
 document.addEventListener("keydown", function (event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
     
 });
 
-//Function that is called both at Button & Keyboard Press
+
+//The Sound function that is called both at Button & Keyboard Press
 
 function makeSound(key) {
     switch (key) {
@@ -63,4 +66,19 @@ function makeSound(key) {
             console.log(buttonInnerHTML);
             break;
     }    
+}
+
+
+//The Animation function that gets called at button & keyboard presses
+
+function buttonAnimation (currentKey) {
+
+  var activeButton =  document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
+
 }
